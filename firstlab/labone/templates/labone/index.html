@@ -1,0 +1,281 @@
+{%load static%}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First LabWork</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'labone/css/labone.css'%}">
+</head>
+<body>
+<h1>Оборотная ведомость</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Квартира</th>
+      <th>Вх.сальдо</th>
+      <th>Январь</th>
+      <th>Февраль</th>
+      <th>Март</th>
+      <th>Апрель</th>
+      <th>Май</th>
+      <th>Июнь</th>
+      <th>Июль</th>
+      <th>Август</th>
+      <th>Сентябрь</th>
+      <th>Октябрь</th>
+      <th>Ноябрь</th>
+      <th>Декабрь</th>
+      <th>Вых.сальдо</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for val in saldo %}
+    <tr>
+      <td>{{ val.apartment }}</td>
+      <td>{{ val.insaldo }}</td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.january }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.january }}<br>
+            {{ val.january }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.february }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.february }}<br>
+            {{ val.february }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.march }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.march }}<br>
+            {{ val.march }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.april }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.april }}<br>
+            {{ val.april }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.may }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.may }}<br>
+            {{ val.may }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.june }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.june }}<br>
+            {{ val.june }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.july }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.july }}<br>
+            {{ val.july }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.august }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.august }}<br>
+            {{ val.august }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.september }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.september }}<br>
+            {{ val.september }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.october }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.october }}<br>
+            {{ val.october }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.november }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.november }}<br>
+            {{ val.november }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>
+        {% for charge in charges %}
+          {% if charge.apartment == val.apartment %}
+            {{ charge.december }}<br>
+          {% endif %}
+        {% endfor %}
+        {% for payment in payments %}
+          {% if payment.apartment == val.apartment %}
+            {{ payment.december }}<br>
+            {{ val.december }}
+          {% endif %}
+        {% endfor %}
+      </td>
+      <td>{{ val.outsaldo}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'create_saldo' %}"><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить запись</button></a>
+<br>
+<br>
+<h1>Начисления и платежи по месяцам (кв 1)</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Долг на начало периода</th>
+      <th></th>
+      <th>01</th>
+      <th>02</th>
+      <th>03</th>
+      <th>04</th>
+      <th>05</th>
+      <th>06</th>
+      <th>07</th>
+      <th>08</th>
+      <th>09</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>Итого:</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th>{{saldo_one.insaldo}}</th>
+      <th>Начис.</th>
+      <td> {{charges_one.january}} </td>
+      <td> {{charges_one.february}} </td>
+      <td> {{charges_one.march}} </td>
+      <td> {{charges_one.april}} </td>
+      <td> {{charges_one.may}} </td>
+      <td> {{charges_one.june}} </td>
+      <td> {{charges_one.july}} </td>
+      <td> {{charges_one.august}} </td>
+      <td> {{charges_one.september}} </td>
+      <td> {{charges_one.october}} </td>
+      <td> {{charges_one.november}} </td>
+      <td> {{charges_one.december}} </td>
+      <th> {{count_charges}} </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Опл.</th>
+      <td> {{payments_one.january}} </td>
+      <td> {{payments_one.february}} </td>
+      <td> {{payments_one.march}} </td>
+      <td> {{payments_one.april}} </td>
+      <td> {{payments_one.may}} </td>
+      <td> {{payments_one.june}} </td>
+      <td> {{payments_one.july}} </td>
+      <td> {{payments_one.august}} </td>
+      <td> {{payments_one.september}} </td>
+      <td> {{payments_one.october}} </td>
+      <td> {{payments_one.november}} </td>
+      <td> {{payments_one.december}} </td>
+      <th>{{count_payments}}</th>
+    </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th><b>Итого к оплате:</b></th>
+    <th>{{result_payment}}</th>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
